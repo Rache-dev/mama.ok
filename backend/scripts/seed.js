@@ -76,8 +76,58 @@ const seedDatabase = async () => {
 const seedUsers = async () => {
   const users = [];
   
-  // Add sample users
-  for (let i = 1; i <= 50; i++) {
+  // Real consultant names (first 20 users)
+  const consultantNames = [
+    { firstName: 'Sarah', lastName: 'Johnson', email: 'sarah.johnson@mama.com' },
+    { firstName: 'Emily', lastName: 'Williams', email: 'emily.williams@mama.com' },
+    { firstName: 'Michael', lastName: 'Brown', email: 'michael.brown@mama.com' },
+    { firstName: 'Jessica', lastName: 'Davis', email: 'jessica.davis@mama.com' },
+    { firstName: 'David', lastName: 'Miller', email: 'david.miller@mama.com' },
+    { firstName: 'Amanda', lastName: 'Wilson', email: 'amanda.wilson@mama.com' },
+    { firstName: 'Christopher', lastName: 'Moore', email: 'christopher.moore@mama.com' },
+    { firstName: 'Jennifer', lastName: 'Taylor', email: 'jennifer.taylor@mama.com' },
+    { firstName: 'Daniel', lastName: 'Anderson', email: 'daniel.anderson@mama.com' },
+    { firstName: 'Michelle', lastName: 'Thomas', email: 'michelle.thomas@mama.com' },
+    { firstName: 'Robert', lastName: 'Jackson', email: 'robert.jackson@mama.com' },
+    { firstName: 'Lisa', lastName: 'White', email: 'lisa.white@mama.com' },
+    { firstName: 'James', lastName: 'Harris', email: 'james.harris@mama.com' },
+    { firstName: 'Maria', lastName: 'Martin', email: 'maria.martin@mama.com' },
+    { firstName: 'William', lastName: 'Garcia', email: 'william.garcia@mama.com' },
+    { firstName: 'Laura', lastName: 'Martinez', email: 'laura.martinez@mama.com' },
+    { firstName: 'Richard', lastName: 'Robinson', email: 'richard.robinson@mama.com' },
+    { firstName: 'Patricia', lastName: 'Clark', email: 'patricia.clark@mama.com' },
+    { firstName: 'Thomas', lastName: 'Rodriguez', email: 'thomas.rodriguez@mama.com' },
+    { firstName: 'Nancy', lastName: 'Lewis', email: 'nancy.lewis@mama.com' }
+  ];
+  
+  // Add consultant users with real names
+  for (let i = 0; i < 20; i++) {
+    users.push({
+      email: consultantNames[i].email,
+      password: 'password123',
+      role: 'user',
+      profile: {
+        firstName: consultantNames[i].firstName,
+        lastName: consultantNames[i].lastName,
+        phone: `+1234567${String(i + 1).padStart(4, '0')}`,
+        dateOfBirth: new Date(1975 + (i % 15), i % 12, (i % 28) + 1)
+      },
+      pregnancyInfo: {
+        isPregnant: false,
+        numberOfChildren: 0
+      },
+      location: {
+        city: ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix'][i % 5],
+        state: ['NY', 'CA', 'IL', 'TX', 'AZ'][i % 5],
+        country: 'USA'
+      },
+      termsAccepted: true,
+      termsAcceptedDate: new Date()
+    });
+  }
+  
+  // Add regular users
+  for (let i = 21; i <= 50; i++) {
     users.push({
       email: `user${i}@mama.com`,
       password: 'password123',
