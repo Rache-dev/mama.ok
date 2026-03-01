@@ -47,10 +47,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 // Database connection
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
+mongoose.connect(process.env.MONGODB_URI)
 .then(() => console.log('✅ MongoDB connected successfully'))
 .catch((err) => {
   console.error('❌ MongoDB connection error:', err);

@@ -9,10 +9,7 @@ const Hospital = require('../models/Hospital');
 const Career = require('../models/Career');
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
+mongoose.connect(process.env.MONGODB_URI)
 .then(() => console.log('✅ MongoDB connected for seeding'))
 .catch((err) => {
   console.error('❌ MongoDB connection error:', err);
