@@ -83,6 +83,23 @@ export default function LoginPage() {
               Sign up
             </Link>
           </p>
+
+          {/* Demo Credentials */}
+          <div className="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
+            <p className="text-xs font-semibold text-gray-700 mb-3">Demo Credentials:</p>
+            <div className="space-y-3">
+              <div>
+                <p className="text-xs font-medium text-purple-600 mb-1">Consultant Login:</p>
+                <p className="text-xs text-gray-600">Email: sarah.johnson@mama.com</p>
+                <p className="text-xs text-gray-600">Password: password123</p>
+              </div>
+              <div>
+                <p className="text-xs font-medium text-pink-600 mb-1">Regular User Login:</p>
+                <p className="text-xs text-gray-600">Email: user21@mama.com</p>
+                <p className="text-xs text-gray-600">Password: password123</p>
+              </div>
+            </div>
+          </div>
         </CardContent>
       </Card>
     </div>
