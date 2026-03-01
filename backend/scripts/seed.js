@@ -105,7 +105,7 @@ const seedUsers = async () => {
     users.push({
       email: consultantNames[i].email,
       password: '$2a$12$aiiahUhXeGGHMcnLGSdRx.4wSQcxhuwgG.eaEV3YNhCLYcjMMxu2e',
-      role: 'user',
+      role: 'consultant',
       profile: {
         firstName: consultantNames[i].firstName,
         lastName: consultantNames[i].lastName,
