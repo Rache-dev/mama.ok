@@ -96,6 +96,19 @@ app.get('/health', (req, res) => {
   res.status(200).json({ status: 'OK', message: 'Server is running' });
 });
 
+// Root endpoint
+app.get('/', (req, res) => {
+  res.status(200).json({ 
+    success: true, 
+    message: 'Backend is successfully running',
+    version: '1.0.0',
+    endpoints: {
+      health: '/health',
+      api: '/api'
+    }
+  });
+});
+
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
