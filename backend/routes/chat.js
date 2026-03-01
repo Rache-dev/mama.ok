@@ -33,7 +33,18 @@ router.get('/', protect, async (req, res) => {
 // @access  Private
 router.post('/', protect, async (req, res) => {
   try {
-    const { consultantId } = req.body;
+    const { consultantId } = req.body; // This is actually the consultant's userId
+    
+    // Find the consultant document by userId
+    const Consultant = require('../models/Consultant');
+    const consultant = await Consultant.findOne({ userId: consultantId });
+    
+    if (!consultant) {
+      return res.status(404).json({
+        success: false,
+        error: 'Consultant not found'
+      });
+    }
     
     // Check if chat already exists
     const existingChat = await Chat.findOne({
@@ -52,7 +63,7 @@ router.post('/', protect, async (req, res) => {
         { userId: req.user.id, role: 'user' },
         { userId: consultantId, role: 'consultant' }
       ],
-      consultantId
+      consultantId: consultant._id // Use the Consultant document ID
     });
     
     res.status(201).json({
