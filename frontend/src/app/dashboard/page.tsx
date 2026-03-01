@@ -13,6 +13,7 @@ export default function DashboardPage() {
   const router = useRouter();
   const user = useAuthStore((state) => state.user);
   const [mounted, setMounted] = useState(false);
+  const [stats, setStats] = useState<any>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -23,6 +24,12 @@ export default function DashboardPage() {
 
   if (!mounted || !user) return null;
 
+  // Show consultant dashboard for consultants
+  if (user.role === 'consultant') {
+    return <ConsultantDashboard user={user} />;
+  }
+
+  // Show regular user dashboard
   const currentWeek = user.pregnancyInfo?.currentWeek || 1;
   const currentMonth = user.pregnancyInfo?.currentMonth || 1;
 
@@ -118,6 +125,94 @@ export default function DashboardPage() {
                   completed={true}
                 />
               )}
+            </div>
+          </CardContent>
+        </Card>
+      </main>
+    </div>
+  );
+}
+
+function ConsultantDashboard({ user }: { user: any }) {
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <Navigation />
+      
+      <main className="container-custom py-8">
+        {/* Welcome Section */}
+        <div className="mb-8">
+          <h1 className="text-4xl font-bold mb-2">
+            Welcome, Dr. {user.profile.firstName} {user.profile.lastName}! 👨‍⚕️
+          </h1>
+          <p className="text-gray-600">Manage your consultations and patient communications</p>
+        </div>
+
+        {/* Stats Overview */}
+        <div className="grid md:grid-cols-3 gap-6 mb-8">
+          <Card>
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm text-gray-600 mb-1">Active Chats</p>
+                  <p className="text-3xl font-bold text-pink-500">-</p>
+                </div>
+                <MessageCircle className="h-10 w-10 text-pink-500 opacity-50" />
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm text-gray-600 mb-1">This Month</p>
+                  <p className="text-3xl font-bold text-purple-500">-</p>
+                </div>
+                <TrendingUp className="h-10 w-10 text-purple-500 opacity-50" />
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm text-gray-600 mb-1">Rating</p>
+                  <p className="text-3xl font-bold text-yellow-500">-</p>
+                </div>
+                <Heart className="h-10 w-10 text-yellow-500 opacity-50" />
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Quick Actions for Consultants */}
+        <div className="grid md:grid-cols-2 gap-6 mb-8">
+          <QuickActionCard
+            href="/chat"
+            icon={<MessageCircle className="h-8 w-8" />}
+            title="Messages"
+            description="View and respond to patient messages"
+          />
+          <QuickActionCard
+            href="/profile"
+            icon={<Heart className="h-8 w-8" />}
+            title="My Profile"
+            description="Update your professional information"
+          />
+        </div>
+
+        {/* Recent Messages */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Recent Activity</CardTitle>
+            <CardDescription>Your latest patient interactions</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="text-center py-8 text-gray-500">
+              <MessageCircle className="h-12 w-12 mx-auto mb-4 opacity-50" />
+              <p>No recent messages</p>
+              <p className="text-sm mt-2">Your patient conversations will appear here</p>
             </div>
           </CardContent>
         </Card>

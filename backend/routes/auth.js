@@ -93,6 +93,15 @@ router.post('/login', [
       });
     }
 
+    // Check if user is a consultant
+    const Consultant = require('../models/Consultant');
+    const consultant = await Consultant.findOne({ userId: user._id });
+    
+    if (consultant) {
+      user.role = 'consultant';
+      await user.save();
+    }
+
     // Update last login
     user.lastLogin = new Date();
     await user.save();
@@ -113,6 +122,15 @@ router.post('/login', [
 router.get('/me', require('../middleware/auth').protect, async (req, res) => {
   try {
     const user = await User.findById(req.user.id).populate('selectedHospital');
+    
+    // Check if user is a consultant and update role if needed
+    const Consultant = require('../models/Consultant');
+    const consultant = await Consultant.findOne({ userId: user._id });
+    
+    if (consultant && user.role !== 'consultant') {
+      user.role = 'consultant';
+      await user.save();
+    }
     
     res.status(200).json({
       success: true,

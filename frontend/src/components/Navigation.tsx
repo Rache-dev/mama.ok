@@ -21,7 +21,8 @@ export default function Navigation() {
   const pathname = usePathname();
   const { user, logout } = useAuthStore();
 
-  const navItems = [
+  // User navigation items
+  const userNavItems = [
     { href: '/dashboard', label: 'Dashboard', icon: Home },
     { href: '/symptoms', label: 'Symptoms', icon: Heart },
     { href: '/wellness', label: 'Wellness', icon: BookOpen },
@@ -32,6 +33,16 @@ export default function Navigation() {
     { href: '/careers', label: 'Careers', icon: Briefcase },
   ];
 
+  // Consultant navigation items
+  const consultantNavItems = [
+    { href: '/dashboard', label: 'Dashboard', icon: Home },
+    { href: '/chat', label: 'Messages', icon: MessageCircle },
+    { href: '/profile', label: 'Profile', icon: User },
+  ];
+
+  // Select navigation based on user role
+  const navItems = user?.role === 'consultant' ? consultantNavItems : userNavItems;
+
   if (!user) return null;
 
   return (
@@ -41,6 +52,11 @@ export default function Navigation() {
           <Link href="/dashboard" className="flex items-center space-x-2">
             <Heart className="h-8 w-8 text-pink-500" />
             <span className="text-2xl font-bold text-gradient">Mama</span>
+            {user?.role === 'consultant' && (
+              <span className="ml-2 text-xs px-2 py-1 bg-purple-100 text-purple-700 rounded-full">
+                Consultant
+              </span>
+            )}
           </Link>
 
           <div className="hidden md:flex items-center space-x-1">
