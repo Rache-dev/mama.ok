@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Heart, Baby, MessageCircle, Hospital, BookOpen, Shield } from 'lucide-react';
+import { Heart, Baby, MessageCircle, Building2, BookOpen, Shield } from 'lucide-react';
 import Image from 'next/image';
 
 export default function HomePage() {
@@ -81,7 +81,7 @@ export default function HomePage() {
             description="Connect with verified obstetricians, midwives, and maternal health specialists via real-time chat."
           />
           <FeatureCard
-            icon={<Hospital className="h-12 w-12" />}
+            icon={<Building2 className="h-12 w-12" />}
             title="Hospital Finder"
             description="Find the best maternity hospitals near you with detailed facilities and ratings."
           />

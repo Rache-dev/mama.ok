@@ -11,7 +11,7 @@ import {
   Search, 
   User, 
   Users, 
-  Hospital,
+  Building2,
   BookOpen,
   Briefcase,
   LogOut 
@@ -27,7 +27,7 @@ export default function Navigation() {
     { href: '/wellness', label: 'Wellness', icon: BookOpen },
     { href: '/consultants', label: 'Consultants', icon: Users },
     { href: '/chat', label: 'Chat', icon: MessageCircle },
-    { href: '/hospitals', label: 'Hospitals', icon: Hospital },
+    { href: '/hospitals', label: 'Hospitals', icon: Building2 },
     { href: '/search', label: 'Search', icon: Search },
     { href: '/careers', label: 'Careers', icon: Briefcase },
   ];

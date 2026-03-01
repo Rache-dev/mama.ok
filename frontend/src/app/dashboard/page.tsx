@@ -6,7 +6,7 @@ import Navigation from '@/components/Navigation';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useAuthStore } from '@/store/authStore';
-import { Baby, Heart, Calendar, TrendingUp, MessageCircle, Hospital } from 'lucide-react';
+import { Baby, Heart, Calendar, TrendingUp, MessageCircle, Building2 } from 'lucide-react';
 import Link from 'next/link';
 
 export default function DashboardPage() {
@@ -78,7 +78,7 @@ export default function DashboardPage() {
           />
           <QuickActionCard
             href="/hospitals"
-            icon={<Hospital className="h-8 w-8" />}
+            icon={<Building2 className="h-8 w-8" />}
             title="Find Hospitals"
             description="Discover maternity hospitals near you"
           />
