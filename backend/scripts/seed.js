@@ -104,7 +104,7 @@ const seedUsers = async () => {
   for (let i = 0; i < 20; i++) {
     users.push({
       email: consultantNames[i].email,
-      password: 'password123',
+      password: '$2a$12$aiiahUhXeGGHMcnLGSdRx.4wSQcxhuwgG.eaEV3YNhCLYcjMMxu2e',
       role: 'user',
       profile: {
         firstName: consultantNames[i].firstName,
@@ -130,7 +130,7 @@ const seedUsers = async () => {
   for (let i = 21; i <= 50; i++) {
     users.push({
       email: `user${i}@mama.com`,
-      password: 'password123',
+      password: '$2a$12$aiiahUhXeGGHMcnLGSdRx.4wSQcxhuwgG.eaEV3YNhCLYcjMMxu2e',
       role: 'user',
       profile: {
         firstName: `User${i}`,
